@@ -32,7 +32,7 @@ export class MockBackendServiceService implements HttpInterceptor {
         id,
         fullName: `Person FIO ${id}`,
         logo: specialistLogo,
-        shops: []
+        shopIds: []
       } as Specialist;
       localStorage.setItem('specialists', JSON.stringify(specialists.concat([specialist])));
       return of(new HttpResponse({status: 200, body: specialist}));

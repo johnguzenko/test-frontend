@@ -1,0 +1,43 @@
+@import '../../../less/vars';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  padding: 22px 25px;
+
+  & .shops__header {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    line-height: 16px;
+    color: @lightGray;
+    margin-bottom: 25px;
+  }
+
+  & .shops__alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: @slightOrange;
+    border-radius: 50px;
+    margin-left: 12px;
+  }
+
+  & .shops__items {
+    padding-left: 40px;
+
+    & .shops__item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 26px;
+    }
+
+    & .shops__item-selector {
+      margin-right: 20px;
+      cursor: pointer;
+    }
+  }
+}

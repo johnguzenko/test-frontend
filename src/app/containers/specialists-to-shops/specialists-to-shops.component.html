@@ -1,12 +1,14 @@
 <!-- Блок со специалистами -->
 <app-specialists
     [value]="specialists$ | async"
+    [active]="selectedSpecialist$ | async"
     (addSpecialist)="createSpecialist($event)"
-    (removeSpecialist)="removeSpecialist($event)"></app-specialists>
+    (removeSpecialist)="removeSpecialist($event)"
+    (selectSpecialist)="selectSpecialist($event)"></app-specialists>
 
 <div class="shops-conatiner">
-    <button class="btn btn-default">Сохранить изменения <img src="../../../assets/img/icons/done-circle.svg"></button>
+    <button class="shops__save btn btn-default">Сохранить изменения <img src="../../../assets/img/icons/done-circle.svg"></button>
 
     <!-- Блок с магазинами -->
-    <app-shops [value]="shops$ | async"></app-shops>
+    <app-shops [value]="selectedShops$ | async" (selectShop)="selectShop($event)"></app-shops>
 </div>

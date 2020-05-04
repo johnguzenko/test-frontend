@@ -8,12 +8,14 @@ export const shops: ReadonlyArray<Shop> = [
     {
         id: 1,
         name: 'Магазин SBS Москва',
-        fullAddress: 'Россия, г. Москва, Бутырская 77'
+        fullAddress: 'Россия, г. Москва, Бутырская 77',
+        logo: 'SB'
     },
     {
         id: 2,
         name: 'Магазин SBS Санкт-Петербург',
-        fullAddress: 'Россия, г. Санкт-Петербург, Бутырская 77'
+        fullAddress: 'Россия, г. Санкт-Петербург, Бутырская 77',
+        logo: 'SB'
     }
 ];
 

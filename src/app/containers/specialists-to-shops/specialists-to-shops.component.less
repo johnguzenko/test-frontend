@@ -1,17 +1,30 @@
 :host {
   display: flex;
+  margin: auto;
+  align-items: flex-end;
 
   & ::ng-deep {
     & app-specialists {
       max-width: 506px;
-      //   width: 506px;
       margin-right: 43px;
       flex-grow: 1;
+    }
+
+    & app-specialist-info,
+    & app-shops {
+      min-height: 440px;
+      box-sizing: border-box;
     }
   }
 
   & .shops-conatiner {
     max-width: 482px;
     flex-grow: 1;
+
+    & .shops__save {
+      display: flex;
+      margin-left: auto;
+      margin-bottom: 16px;
+    }
   }
 }

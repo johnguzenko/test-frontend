@@ -49,6 +49,10 @@
 
   //Shops
   & .specialist-info__shops {
+    & app-shop-item {
+      margin-bottom: 26px;
+    }
+
     &-not-found {
       display: flex;
       align-items: center;
@@ -59,7 +63,7 @@
         justify-content: center;
         width: 24px;
         height: 24px;
-        background-color: rgba(255, 149, 0, 0.1);
+        background-color: @slightOrange;
         border-radius: 50px;
         margin-left: 12px;
       }

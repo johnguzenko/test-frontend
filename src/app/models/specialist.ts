@@ -16,8 +16,9 @@ export interface Specialist {
      * Logo в base64
      */
     logo: string;
+    shopIds: ReadonlyArray<number>;
     /**
      * Список магазинов, в которых работает специалист
      */
-    shops: ReadonlyArray<Readonly<Shop>>;
+    shops?: ReadonlyArray<Readonly<Shop>> | undefined;
 }

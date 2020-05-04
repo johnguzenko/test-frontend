@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 import {Shop} from 'src/app/models/shop';
 
 @Component({
@@ -8,5 +8,10 @@ import {Shop} from 'src/app/models/shop';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShopsComponent {
-  @Input() public value: ReadonlyArray<Shop> = [];
+  @Input() public value: ReadonlyArray<Readonly<Shop>> = [];
+  @Output() public selectShop = new EventEmitter<Readonly<Shop>>();
+
+  public onSelectShop(item: Readonly<Shop>): void {
+    this.selectShop.emit(item);
+  }
 }

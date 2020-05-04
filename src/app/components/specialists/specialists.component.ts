@@ -9,15 +9,20 @@ import {PersonIcon} from '../specialist-shelf/specialist-shelf.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpecialistsComponent {
-  @Input() public set value(values: ReadonlyArray<Specialist>) {
+  @Input() public set value(values: ReadonlyArray<Readonly<Specialist>>) {
     this.items = values;
+    this.icons = values.map((v, index) => ({id: v.id, icon: v.logo, active: this.selectedSpecialist === v}));
+  }
+
+  @Input() public set active(value: Readonly<Specialist>) {
+    this.selectedSpecialist = value;
     // Выберем просто 1ого специалиста
-    this.icons = values.map((v, index) => ({id: v.id, icon: v.logo, active: index === 0}));
-    this.selectedSpecialist = values.length ? values[0] : null;
+    this.icons = this.icons.map((v, index) => ({...v, active: value.id === v.id}));
   }
 
   @Output() public addSpecialist = new EventEmitter<void>();
   @Output() public removeSpecialist = new EventEmitter<Readonly<Specialist>>();
+  @Output() public selectSpecialist = new EventEmitter<Readonly<Specialist>>();
 
   public items: ReadonlyArray<Specialist> = [];
   public icons: ReadonlyArray<Readonly<PersonIcon>> = [];
@@ -34,13 +39,7 @@ export class SpecialistsComponent {
    * Выбор специалиста
    */
   public onSelectSpecialist(item: Readonly<PersonIcon>): void {
-    this.selectedSpecialist = this.items.find((i) => i.id === item.id) || null;
-    this.icons = this.icons.map((i) => {
-      return {
-        ...i,
-        active: i === item
-      };
-    });
+    this.selectSpecialist.emit(this.items.find((i) => i.id === item.id));
   }
 
   /**

@@ -14,4 +14,8 @@ export interface Shop {
      * Полный адрес
      */
     fullAddress: string;
+    /**
+     * Символы на лого
+     */
+    logo: string;
 }

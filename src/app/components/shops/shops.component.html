@@ -1,2 +1,18 @@
-<p>shops works!</p>
-{{value | json}}
+<div class="shops__header">
+    <span>Нераспределенные магазины: {{value.length}}</span>
+    <div class="shops__alert">
+        <img src="../../../assets/img/icons/alert.svg">
+    </div>
+</div>
+
+<div class="shops__items" *ngIf="value && value.length else notFound">
+    <div class="shops__item" *ngFor="let shop of value" >
+        <div class="shops__item-selector" (click)="onSelectShop(shop)">
+            <img src="../../../assets/img/icons/arrow-right-more.svg">
+        </div>
+        <app-shop-item [value]="shop"></app-shop-item>
+    </div>
+</div>
+<ng-template #notFound>
+    <span>Магазины не найдены</span>
+</ng-template>
