@@ -1,0 +1,16 @@
+<!-- Список текущих специалистов -->
+<div class="specialist-shelf__item"
+    *ngFor="let item of value; trackBy: trackItems"
+    (click)="onSelectItem(item)"
+    [class.active]="item.active">
+
+    <img [src]="item.icon">
+</div>
+
+<!-- Кнопка "Добавить" -->
+<div class="specialist-shelf__item-add-container">
+    <div class="specialist-shelf__item specialist-shelf__item-add" (click)="onClickAddBtn()">
+        <img src="../../../assets/img/icons/plus.svg">
+    </div>
+    <span class="specialist-shelf__item-add-hint" *ngIf="value && !value.length">Добавить специалиста</span>
+</div>

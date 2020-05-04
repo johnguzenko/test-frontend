@@ -1,0 +1,12 @@
+<!-- Полка специалистов -->
+<app-specialist-shelf
+    [value]="icons"
+    (add)="onAddSpecialist()"
+    (selectItem)="onSelectSpecialist($event)">
+</app-specialist-shelf>
+
+<!-- Информация о выбранном специалисте -->
+<app-specialist-info *ngIf="selectedSpecialist else specialistNotFound" [value]="selectedSpecialist"></app-specialist-info>
+<ng-template #specialistNotFound>
+    <app-specialist-not-found></app-specialist-not-found>
+</ng-template>
