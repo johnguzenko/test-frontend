@@ -1,8 +1,11 @@
 <!-- Блок со специалистами -->
-<app-specialists [value]="specialists$ | async" (addSpecialist)="createSpecialist($event)"></app-specialists>
+<app-specialists
+    [value]="specialists$ | async"
+    (addSpecialist)="createSpecialist($event)"
+    (removeSpecialist)="removeSpecialist($event)"></app-specialists>
 
 <div class="shops-conatiner">
-    <button>Сохранить изменения</button>
+    <button class="btn btn-default">Сохранить изменения <img src="../../../assets/img/icons/done-circle.svg"></button>
 
     <!-- Блок с магазинами -->
     <app-shops [value]="shops$ | async"></app-shops>

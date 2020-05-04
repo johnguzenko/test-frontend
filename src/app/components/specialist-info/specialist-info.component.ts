@@ -1,5 +1,5 @@
 import {Specialist} from './../../models/specialist';
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-specialist-info',
@@ -9,4 +9,12 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 })
 export class SpecialistInfoComponent {
   @Input() public value: Readonly<Specialist> | null = null;
+  @Output() public trashClick = new EventEmitter<void>();
+
+  /**
+   * Удаление элемента
+   */
+  public onClickTrash(): void {
+    this.trashClick.emit();
+  }
 }

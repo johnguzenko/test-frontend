@@ -8,6 +8,7 @@ import {switchMap, tap} from 'rxjs/operators';
 export const getShopsUrl = 'http://localhost:4200/shops';
 export const getSpecialistUrl = 'http://localhost:4200/specialist';
 export const createSpecialistUrl = 'http://localhost:4200/specialist';
+export const removeSpecialistUrl = 'http://localhost:4200/specialist';
 
 /**
  * Сервис для работы с сервисом АПИ
@@ -50,6 +51,15 @@ export class ApiService {
   public createSpecialist(dto: Readonly<Specialist>): Observable<Readonly<Specialist>> {
     return this.httpClient.post<Readonly<Specialist>>(createSpecialistUrl, dto).pipe(
       tap((response) => this.spesialists$.next(this.spesialists$.value.concat([response])))
+    );
+  }
+
+  /**
+   * Удалить специалиста
+   */
+  public removeSpecialist(id: number): Observable<void> {
+    return this.httpClient.delete<void>(removeSpecialistUrl, {params: {id: id.toString()}}).pipe(
+      tap((response) => this.spesialists$.next(this.spesialists$.value.filter((s) => s.id !== id)))
     );
   }
 }

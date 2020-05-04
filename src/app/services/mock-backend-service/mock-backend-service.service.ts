@@ -1,3 +1,4 @@
+import {removeSpecialistUrl} from './../api/api.service';
 import {Specialist} from './../../models/specialist';
 import {shops, specialistLogo} from './mock-data';
 import {Observable, of} from 'rxjs';
@@ -22,17 +23,27 @@ export class MockBackendServiceService implements HttpInterceptor {
       return of(new HttpResponse({status: 200, body: specialists}));
     }
 
-    // Получить список созданных специалистов
+    // Добавить нового спеца
     if (request.method === 'POST' && request.url === createSpecialistUrl) {
       const specialists = (JSON.parse(localStorage.getItem('specialists') || '[]')) as ReadonlyArray<Specialist>;
-      // Добавим валидацию "на бэке"
+      const lastSpecialist = specialists[specialists.length - 1];
+      const id = lastSpecialist ? lastSpecialist.id + 1 : 1;
       const specialist = {
-        id: specialists.length + 1,
-        fullName: `Person FIO ${specialists.length + 1}`,
-        logo: specialistLogo
+        id,
+        fullName: `Person FIO ${id}`,
+        logo: specialistLogo,
+        shops: []
       } as Specialist;
       localStorage.setItem('specialists', JSON.stringify(specialists.concat([specialist])));
       return of(new HttpResponse({status: 200, body: specialist}));
+    }
+
+    // Удалить спеца
+    if (request.method === 'DELETE' && request.url === removeSpecialistUrl) {
+      const id = +request.params.get('id');
+      const specialists = (JSON.parse(localStorage.getItem('specialists') || '[]')) as ReadonlyArray<Specialist>;
+      localStorage.setItem('specialists', JSON.stringify(specialists.filter((s) => s.id !== id)));
+      return of(new HttpResponse({status: 200, body: 'ok'}));
     }
 
     next.handle(request);

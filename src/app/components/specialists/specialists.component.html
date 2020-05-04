@@ -6,7 +6,11 @@
 </app-specialist-shelf>
 
 <!-- Информация о выбранном специалисте -->
-<app-specialist-info *ngIf="selectedSpecialist else specialistNotFound" [value]="selectedSpecialist"></app-specialist-info>
+<app-specialist-info
+    *ngIf="selectedSpecialist else specialistNotFound"
+    [value]="selectedSpecialist"
+    (trashClick)="onRemoveItem(selectedSpecialist)">
+</app-specialist-info>
 <ng-template #specialistNotFound>
     <app-specialist-not-found></app-specialist-not-found>
 </ng-template>

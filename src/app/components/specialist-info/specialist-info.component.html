@@ -1,1 +1,39 @@
-<p>specialist-info works!</p>
+<ng-container *ngIf="value">
+    <!-- Специалист -->
+    <div class="specialist-info__container">
+        <div class="specialist-info__label">Специалист</div>
+        <div class="specialist-info__person">
+            <div class="specialist-info__person-logo">
+                <img [src]="value.logo">
+            </div>
+            <div class="specialist-info__person-name">
+                {{value.fullName}}
+            </div>
+            <div class="specialist-info__person-shop-counts">
+                {{value.shops.length | num2Str: ['магазин', 'магазина', 'магазинов']}}
+            </div>
+            <div class="specialist-info__person-trash" (click)="onClickTrash()">
+                <img src="../../../assets/img/icons/dustbin.svg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Магазины специалиста -->
+    <div class="specialist-info__container">
+        <div class="specialist-info__label">Магазины</div>
+        <div class="specialist-info__shops">
+            <ng-container *ngIf="value.shops && value.shops.length else notFoundShops">
+                <app-shop-item *ngFor="let shop of value.shops"></app-shop-item>
+            </ng-container>
+            <ng-template #notFoundShops>
+                <div class="specialist-info__shops-not-found">
+                    <span>Не назначены</span>
+                    <div class="specialist-info__shops-not-found-img">
+                        <img src="../../../assets/img/icons/alert.svg">
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    
+</ng-container>

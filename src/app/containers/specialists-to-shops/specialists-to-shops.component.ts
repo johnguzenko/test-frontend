@@ -27,4 +27,8 @@ export class SpecialistsToShopsComponent {
   public createSpecialist(data: Readonly<Specialist>): void {
     this.apiService.createSpecialist(data).subscribe();
   }
+
+  public removeSpecialist(data: Readonly<Specialist>): void {
+    this.apiService.removeSpecialist(data.id).subscribe();
+  }
 }

@@ -1,3 +1,5 @@
+import {Shop} from './shop';
+
 /**
  * Специалист
  */
@@ -14,4 +16,8 @@ export interface Specialist {
      * Logo в base64
      */
     logo: string;
+    /**
+     * Список магазинов, в которых работает специалист
+     */
+    shops: ReadonlyArray<Readonly<Shop>>;
 }

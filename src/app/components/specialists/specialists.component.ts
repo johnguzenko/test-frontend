@@ -17,6 +17,7 @@ export class SpecialistsComponent {
   }
 
   @Output() public addSpecialist = new EventEmitter<void>();
+  @Output() public removeSpecialist = new EventEmitter<Readonly<Specialist>>();
 
   public items: ReadonlyArray<Specialist> = [];
   public icons: ReadonlyArray<Readonly<PersonIcon>> = [];
@@ -40,5 +41,12 @@ export class SpecialistsComponent {
         active: i === item
       };
     });
+  }
+
+  /**
+   * Удаление выбранного специалиста
+   */
+  public onRemoveItem(item: Readonly<Specialist>): void {
+    this.removeSpecialist.emit(item);
   }
 }
