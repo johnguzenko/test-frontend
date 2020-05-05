@@ -1,6 +1,7 @@
 import {Component, ChangeDetectionStrategy, Input, EventEmitter, Output} from '@angular/core';
 import {Specialist} from 'src/app/models/specialist';
 import {PersonIcon} from '../specialist-shelf/specialist-shelf.component';
+import {Shop} from 'src/app/models/shop';
 
 @Component({
   selector: 'app-specialists',
@@ -15,6 +16,7 @@ export class SpecialistsComponent {
   }
 
   @Input() public set active(value: Readonly<Specialist>) {
+    // console.log('active', value);
     this.selectedSpecialist = value;
     // Выберем просто 1ого специалиста
     this.icons = this.icons.map((v, index) => ({...v, active: value.id === v.id}));
@@ -23,6 +25,7 @@ export class SpecialistsComponent {
   @Output() public addSpecialist = new EventEmitter<void>();
   @Output() public removeSpecialist = new EventEmitter<Readonly<Specialist>>();
   @Output() public selectSpecialist = new EventEmitter<Readonly<Specialist>>();
+  @Output() public removeShop = new EventEmitter<Readonly<Shop>>();
 
   public items: ReadonlyArray<Specialist> = [];
   public icons: ReadonlyArray<Readonly<PersonIcon>> = [];
@@ -47,5 +50,12 @@ export class SpecialistsComponent {
    */
   public onRemoveItem(item: Readonly<Specialist>): void {
     this.removeSpecialist.emit(item);
+  }
+
+  /**
+   * Удаление выбранного специалиста
+   */
+  public onRemoveShopFromItem(item: Readonly<Shop>): void {
+    this.removeShop.emit(item);
   }
 }

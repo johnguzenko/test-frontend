@@ -49,8 +49,33 @@
 
   //Shops
   & .specialist-info__shops {
-    & app-shop-item {
+    display: flex;
+    flex-direction: column;
+    padding-left: 36px;
+    padding-top: 31px;
+
+    & .specialist-info__shop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 26px;
+
+      &-trash {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        background-color: @dividerGray;
+        border-radius: 50%;
+        cursor: pointer;
+
+        & span {
+          height: 2px;
+          background-color: @lightGray;
+          width: 7px;
+        }
+      }
     }
 
     &-not-found {
@@ -69,4 +94,5 @@
       }
     }
   }
+
 }

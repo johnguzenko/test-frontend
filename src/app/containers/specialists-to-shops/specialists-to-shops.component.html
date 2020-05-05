@@ -4,10 +4,11 @@
     [active]="selectedSpecialist$ | async"
     (addSpecialist)="createSpecialist($event)"
     (removeSpecialist)="removeSpecialist($event)"
-    (selectSpecialist)="selectSpecialist($event)"></app-specialists>
+    (selectSpecialist)="selectSpecialist($event)"
+    (removeShop)="removeShop($event)"></app-specialists>
 
 <div class="shops-conatiner">
-    <button class="shops__save btn btn-default">Сохранить изменения <img src="../../../assets/img/icons/done-circle.svg"></button>
+    <button class="shops__save btn btn-default" (click)="saveChanges()">Сохранить изменения <img src="../../../assets/img/icons/done-circle.svg"></button>
 
     <!-- Блок с магазинами -->
     <app-shops [value]="selectedShops$ | async" (selectShop)="selectShop($event)"></app-shops>

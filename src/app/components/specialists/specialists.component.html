@@ -9,7 +9,8 @@
 <app-specialist-info
     *ngIf="selectedSpecialist else specialistNotFound"
     [value]="selectedSpecialist"
-    (trashClick)="onRemoveItem(selectedSpecialist)">
+    (trashClick)="onRemoveItem(selectedSpecialist)"
+    (trashShopClick)="onRemoveShopFromItem($event)">
 </app-specialist-info>
 <ng-template #specialistNotFound>
     <app-specialist-not-found></app-specialist-not-found>

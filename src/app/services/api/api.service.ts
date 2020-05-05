@@ -1,3 +1,4 @@
+import {CreateWorkerShopReq} from './../../dtos/create-worker-shop.req.dto';
 import {Specialist} from './../../models/specialist';
 import {Observable, of, BehaviorSubject} from 'rxjs';
 import {Injectable} from '@angular/core';
@@ -9,6 +10,7 @@ export const getShopsUrl = 'http://localhost:4200/shops';
 export const getSpecialistUrl = 'http://localhost:4200/specialist';
 export const createSpecialistUrl = 'http://localhost:4200/specialist';
 export const removeSpecialistUrl = 'http://localhost:4200/specialist';
+export const updateShopsForSpecialistUrl = 'http://localhost:4200/specialist/shops';
 
 /**
  * Сервис для работы с сервисом АПИ
@@ -61,5 +63,12 @@ export class ApiService {
     return this.httpClient.delete<void>(removeSpecialistUrl, {params: {id: id.toString()}}).pipe(
       tap((response) => this.spesialists$.next(this.spesialists$.value.filter((s) => s.id !== id)))
     );
+  }
+
+  /**
+   * Обновить магазины у специалиста
+   */
+  public updateShopsForSpecialist(dto: ReadonlyArray<Readonly<CreateWorkerShopReq>>): Observable<void> {
+    return this.httpClient.put<void>(updateShopsForSpecialistUrl, dto);
   }
 }

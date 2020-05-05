@@ -1,4 +1,5 @@
-import {removeSpecialistUrl} from './../api/api.service';
+import {CreateWorkerShopReq} from './../../dtos/create-worker-shop.req.dto';
+import {removeSpecialistUrl, updateShopsForSpecialistUrl} from './../api/api.service';
 import {Specialist} from './../../models/specialist';
 import {shops, specialistLogo} from './mock-data';
 import {Observable, of} from 'rxjs';
@@ -43,6 +44,28 @@ export class MockBackendServiceService implements HttpInterceptor {
       const id = +request.params.get('id');
       const specialists = (JSON.parse(localStorage.getItem('specialists') || '[]')) as ReadonlyArray<Specialist>;
       localStorage.setItem('specialists', JSON.stringify(specialists.filter((s) => s.id !== id)));
+      return of(new HttpResponse({status: 200, body: 'ok'}));
+    }
+
+    // Обновить данные о магазинах у спеца
+    if (request.method === 'PUT' && request.url === updateShopsForSpecialistUrl) {
+      const data = request.body as ReadonlyArray<Readonly<CreateWorkerShopReq>>;
+      console.log(data);
+      const specialists = (JSON.parse(localStorage.getItem('specialists') || '[]')) as ReadonlyArray<Specialist>;
+      const specToShopIds = new Map<number, Set<number>>();
+      data.forEach((d) => {
+        const currentShops = specToShopIds.get(d.specialistId) || new Set();
+        currentShops.add(d.shopId);
+        specToShopIds.set(d.specialistId, currentShops);
+      });
+      const updatedSpecialists = specialists.map((s) => {
+        const updatedShops = specToShopIds.get(s.id);
+        if (updatedShops) {
+          return {...s, shopIds: [...updatedShops]};
+        }
+        return s;
+      });
+      localStorage.setItem('specialists', JSON.stringify(updatedSpecialists));
       return of(new HttpResponse({status: 200, body: 'ok'}));
     }
 
