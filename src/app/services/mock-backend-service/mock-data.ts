@@ -16,6 +16,24 @@ export const shops: ReadonlyArray<Shop> = [
         name: 'Магазин SBS Санкт-Петербург',
         fullAddress: 'Россия, г. Санкт-Петербург, Бутырская 77',
         logo: 'SB'
+    },
+    {
+        id: 3,
+        name: 'Магазин SBS Томск',
+        fullAddress: 'Россия, г. Томск, Бутырская 77',
+        logo: 'SB'
+    },
+    {
+        id: 4,
+        name: 'Магазин SBS Коломна',
+        fullAddress: 'Россия, г. Коломна, Бутырская 77',
+        logo: 'SB'
+    },
+    {
+        id: 5,
+        name: 'Магазин SBS Калуга',
+        fullAddress: 'Россия, г. Калуга, Бутырская 77',
+        logo: 'SB'
     }
 ];
 
